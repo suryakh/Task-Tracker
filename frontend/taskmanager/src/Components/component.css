@@ -1,0 +1,9 @@
+.mainDiv{
+ display: flex;
+ flex-direction: row;   
+}
+.mainDiv > div:first-child {
+    height: 200px ;
+    border: 2px solid black;
+    width: 50%;
+}
