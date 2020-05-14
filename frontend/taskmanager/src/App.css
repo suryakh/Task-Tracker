@@ -1,0 +1,11 @@
+ul li{
+  margin:20px;
+  display:inline-block;
+}
+.navBar {
+  float: right;
+}
+.Nav {
+  border: 2px solid black;
+  height: 80px;
+}
