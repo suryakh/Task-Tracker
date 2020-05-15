@@ -46,6 +46,7 @@ def taskData():
             return json.dumps({'message':'error'}),400 
     else:
         id = request.json ['id']
+        timeValue = request.json ['time']
         token = request.headers.get('Authorization')
         encoded_data = token.split(' ')[1]
         try:
@@ -53,7 +54,7 @@ def taskData():
             cursor = mysql.connection.cursor()
             print(id)
             cursor.execute(
-            """UPDATE taskList SET currStatus = 1 ,endTime= now() where id = %s""",(id,)
+            """UPDATE taskList SET currStatus = 1 ,endTime= now(),overalTime= %s where id = %s""",(timeValue,id)
             )
             mysql.connection.commit()
             # print(taskName,projectName)

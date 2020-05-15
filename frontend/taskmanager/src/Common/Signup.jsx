@@ -40,36 +40,36 @@ export class Signup extends Component {
     render() {
         return (
             <div className="container">
-                    <div className="inputHolder">
-                        <div>
-                            <label>Username</label>
-                        </div>
-                        <div>
-                            <input className="col-12 form-control" name="username" placeholder="enter username" value={this.state.username} type="text" onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <label>Email</label>
-                        </div>
-                        <div>
-                            <input className="col-12 form-control" name="email" placeholder="enter email" value={this.state.email} type="text" onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <label>Password</label>
-                        </div>
-                        <div>
-                            <input className="col-12 form-control" type="text" name="password" placeholder="enter password" value={this.state.password} onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <label>Mobile</label>
-                        </div>
-                        <div>
-                            <input type="text" name="mobile" placeholder="enter mobile no." value={this.state.mobile} onChange={this.handleChange} />
-                        </div>
-                        <div className="btn">
-                            <button  onClick={this.handleClick}>Signup</button>
-                        </div>
+                <div className="inputFormHolder">
+                    <div>
+                        <label>Username</label>
+                    </div>
+                    <div>
+                        <input className="col-12 form-control" name="username" placeholder="enter username" value={this.state.username} type="text" onChange={this.handleChange} />
+                    </div>
+                    <div>
+                        <label>Email</label>
+                    </div>
+                    <div>
+                        <input className="col-12 form-control" name="email" placeholder="enter email" value={this.state.email} type="text" onChange={this.handleChange} />
+                    </div>
+                    <div>
+                        <label>Password</label>
+                    </div>
+                    <div>
+                        <input className="col-12 form-control" type="text" name="password" placeholder="enter password" value={this.state.password} onChange={this.handleChange} />
+                    </div>
+                    <div>
+                        <label>Mobile</label>
+                    </div>
+                    <div>
+                        <input type="text" name="mobile" placeholder="enter mobile no." value={this.state.mobile} onChange={this.handleChange} />
+                    </div>
+                    <div className="btn">
+                        <button style={{ backgroundColor: "green" }} onClick={this.handleClick}>Signup</button>
                     </div>
                 </div>
+            </div>
         )
     }
 }

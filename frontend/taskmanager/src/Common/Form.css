@@ -1,8 +1,10 @@
 .container {
     position: relative;
 }
-
-.inputHolder {
+.inputFormHolder input {
+    width: 400px;
+}
+.inputFormHolder {
     border:2px solid black;
     height: auto;
     width: auto;
@@ -14,10 +16,14 @@
     margin: 30px 0 0 -170px;
 }
 
-.inputHolder > div {
-    border: 2px solid black;
+.inputFormHolder > div {
     margin: 20px;
 }
 .btn {
+    text-align: center;
+}
+.singout {
+    padding: 40px;
+    margin: 50px;
     text-align: center;
 }

@@ -25,16 +25,16 @@ export class Routers extends Component {
                                 <Link to='/'> Home</Link>
                             </li>
                             <li>
-                            {!this.props.value.loginStatus && <Link to='/login'> Login</Link>}
+                                {!this.props.value.loginStatus && <Link to='/login'> Login</Link>}
                             </li>
                             <li>
-                            {!this.props.value.loginStatus &&   <Link to='/signup'>signup</Link>}
+                                {!this.props.value.loginStatus && <Link to='/signup'>signup</Link>}
                             </li>
                             <li>
                                 {this.props.value.loginStatus && <h3>{this.props.value.user}</h3>}
                             </li>
                             <li>
-                                {this.props.value.loginStatus && <Link to="logout"> <button onClick={() => this.handleClick()}>Logout</button></Link>}
+                                {this.props.value.loginStatus && <Link to="logout"> <button style={{backgroundColor:"red"}} onClick={() => this.handleClick()}>Logout</button></Link>}
                             </li>
                         </ul>
                     </div>

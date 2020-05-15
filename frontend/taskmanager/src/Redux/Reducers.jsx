@@ -1,19 +1,20 @@
-import {LOGIN ,LOGOUT,PROJECTLIST,PROJ_REQ,CURR_TASK,ALL_TASKS}  from './Action_types'
+import { LOGIN, LOGOUT, PROJECTLIST, PROJ_REQ, CURR_TASK, ALL_TASKS,PROJ_FILLTER } from './Action_types'
 
 let initialState = {
-    loginStatus:false,
+    loginStatus: false,
     user: "",
     token: ""
 }
 
-let taskDataState= {
-    projectList:[],
-    reqSent:false,
-    currTaskList:[],
-    allTasks:[]
+let taskDataState = {
+    projectList: [],
+    reqSent: false,
+    currTaskList: [],
+    allTasks: [],
+    displayTasks:[]
 }
 
-const userReducers = (state = initialState,action)=>{
+const userReducers = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN: {
             return {
@@ -37,39 +38,61 @@ const userReducers = (state = initialState,action)=>{
     }
 }
 
-const taskReducers = (state=taskDataState,action)=>{
-    switch(action.type){
-        case PROJECTLIST:{
-            return{
-                ...state,
-                projectList:action.payload,
-                reqSent:true
-            }
-        }
-        case PROJ_REQ:{
+const taskReducers = (state = taskDataState, action) => {
+    switch (action.type) {
+        case PROJECTLIST: {
             return {
                 ...state,
-                reqSent:false
+                projectList: action.payload,
+                reqSent: true
             }
         }
-        case CURR_TASK:{
+        case PROJ_REQ: {
             return {
                 ...state,
-                currTaskList:action.payload,
-                reqSent:true
+                reqSent: false
             }
         }
-        case ALL_TASKS:{
-            return{
+        case CURR_TASK: {
+            return {
                 ...state,
-                allTasks:action.payload,
-                reqSent:true
+                currTaskList: action.payload,
+                reqSent: true
             }
         }
-        default :{
+        case ALL_TASKS: {
+            return {
+                ...state,
+                allTasks: action.payload,
+                displayTasks:action.payload,
+                reqSent: true
+            }
+        }
+        case PROJ_FILLTER:{
+            let temp  = []
+            console.log(action.payload)
+            if(action.payload == "All"){
+                return{
+                    ...state,
+                    displayTasks:state.allTasks
+                }
+            }
+            else {
+            temp = state.allTasks.filter((ele)=>{
+                if (ele.projectName == action.payload){
+                    return ele
+                }
+            })
+            return {
+                ...state,
+                displayTasks:temp
+            }
+        }
+        }
+        default: {
             return state
         }
     }
 }
 
-export {userReducers,taskReducers}
+export { userReducers, taskReducers }

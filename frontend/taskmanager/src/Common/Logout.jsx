@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 export class Logout extends Component {
     render() {
         return (
-            <div>
-                User successfullly logout
+            <div className="singout">
+                <h1>User successfullly logedout</h1>
             </div>
         )
     }

@@ -1,33 +1,44 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {getCurrTask} from '../Redux/Actions'
-import {Link} from 'react-router-dom'
+import { getCurrTask } from '../Redux/Actions'
+import { Link, Redirect } from 'react-router-dom'
 
 export class CurrentTask extends Component {
-    componentDidMount(){
+    componentDidMount() {
         this.props.getCurrTask(this.props.value.token)
     }
-    handlechange =()=>"hello"
+    handlechange = () => "hello"
     render() {
         console.log(this.props.task)
-        return (
-            <div>
-                {this.props.task.reqSent&& this.props.task.currTaskList.map((ele)=><div><Link to ={`/task/${ele.id}`}><div>{ele.taskName}</div></Link></div>)}
-            </div>
-        )
+        if (this.props.value.loginStatus) {
+            return (
+                <div className="container">
+                    <div className="dataHolder">
+                        <h3>Current Tasks</h3>
+                        {this.props.task.reqSent && this.props.task.currTaskList.map((ele) => <div className="items"><Link to={`/task/${ele.id}`}><div>{ele.taskName}</div></Link></div>)}
+                    </div>
+                </div>
+            )
+        }
+        else {
+            return (
+                <Redirect to='/login' />
+            )
+        }
+
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        value:state.userReducers,
-        task:state.taskReducers
-    }   
+        value: state.userReducers,
+        task: state.taskReducers
+    }
 }
 
 const mapDispatchToProps = dispatch => {
-    return{
-        getCurrTask:(token)=>dispatch(getCurrTask(token))
+    return {
+        getCurrTask: (token) => dispatch(getCurrTask(token))
     }
 }
 

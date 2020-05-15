@@ -8,19 +8,21 @@ export class Home extends Component {
     render() {
         if(this.props.user){
         return (
-            <div className="mainDiv">
-                <div>
+            <div>
+                <div className="addTaskDiv">
+                    <h2>Add New Task </h2>
+                    <div>
                     <AddTask />
-                </div>
-                <div>
-                    <div>
-                    <Link to ='/currtask'><button>Show current task</button></Link>
-                    </div>
-                    <div>
-                    <Link to ='/alltask'><button>Show All task</button></Link>
                     </div>
                 </div>
-                
+                    <div className="mainDiv">
+                    <div>
+                    <Link to ='/currtask'><button style={{backgroundColor:"blue"}}>Show current task</button></Link>
+                    </div>
+                    <div>
+                    <Link to ='/alltask'><button style={{backgroundColor:"blue"}}>Show All task</button></Link>
+                    </div>
+                    </div>
             </div>
         )
         }

@@ -30,12 +30,12 @@ export class Login extends Component {
         if (!this.props.value.loginStatus) {
             return (
                 <div className="container">
-                        <div  className="inputHolder">
+                        <div  className="inputFormHolder">
                             <div>
                                 <label>Username</label>
                             </div>
                             <div>
-                                <input name="username" placeholder="Enter username" value={this.state.username} type="text" onChange={this.handleChange} />
+                                <input name="username"  placeholder="Enter username" value={this.state.username} type="text" onChange={this.handleChange} />
                             </div>
                             <div>
                                 <label>Password</label>
@@ -45,7 +45,7 @@ export class Login extends Component {
                             </div>
                             <div ><p>If you don't have account <Link to="/signup">Signup here</Link></p></div>
                             <div className="btn">
-                                <button onClick={this.handleClick}>Login</button>
+                                <button style={{backgroundColor:"blue"}} onClick={this.handleClick}>Login</button>
                             </div>
 
                         </div>

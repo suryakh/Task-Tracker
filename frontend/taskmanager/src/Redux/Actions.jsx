@@ -1,4 +1,4 @@
-import  { LOGIN,LOGOUT,PROJECTLIST,PROJ_REQ,CURR_TASK,ALL_TASKS } from './Action_types'
+import { LOGIN, LOGOUT, PROJECTLIST, PROJ_REQ, CURR_TASK, ALL_TASKS,PROJ_FILLTER } from './Action_types'
 import axios from 'axios'
 
 const login = (data) => {
@@ -13,26 +13,32 @@ const logout = () => {
     }
 }
 
-const projectList =(data)=>{
+const projectList = (data) => {
     return {
-        type:PROJECTLIST,
-        payload:data
+        type: PROJECTLIST,
+        payload: data
     }
 }
-const projectReqSent=()=>{
-    return{
-        type:PROJ_REQ
-    }
-}
-const currentTask=(data)=>{
-    return{
-        type:CURR_TASK,
-        payload:data
-    }
-}
-const allTasks = (data)=>{
+const projectReqSent = () => {
     return {
-        type:ALL_TASKS,
+        type: PROJ_REQ
+    }
+}
+const currentTask = (data) => {
+    return {
+        type: CURR_TASK,
+        payload: data
+    }
+}
+const allTasks = (data) => {
+    return {
+        type: ALL_TASKS,
+        payload: data
+    }
+}
+const projectFilter = (data) =>{
+    return {
+        type:PROJ_FILLTER,
         payload:data
     }
 }
@@ -55,6 +61,7 @@ const loginUser = (data) => {
             )
     };
 }
+
 const singupUser = (data) => {
     return dispatch => {
         axios({
@@ -71,70 +78,74 @@ const singupUser = (data) => {
     }
 }
 
-const getProjects = (token)=>{
-    return dispatch=>{
+const getProjects = (token) => {
+    return dispatch => {
         dispatch(projectReqSent())
         axios({
-            method:'GET',
-            url:"http://localhost:5000/projects/list",
+            method: 'GET',
+            url: "http://localhost:5000/projects/list",
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        .then((res)=>dispatch(projectList(res.data)))
-        .catch((err)=>console.log(err))
+            .then((res) => dispatch(projectList(res.data)))
+            .catch((err) => console.log(err))
     }
 
 }
 
-const addTask = (data,token)=>{
-    return dispatch=>{
+const addTask = (data, token) => {
+    return dispatch => {
         axios({
-            method:'POST',
-            url:"http://localhost:5000/task/add",
+            method: 'POST',
+            url: "http://localhost:5000/task/add",
             headers: { 'Authorization': `Bearer ${token}` },
-            data:data
+            data: data
         })
-        .then((res)=>alert("successfully added"))
-        .catch((err)=>console.log(err))
+            .then((res) => alert("successfully added"))
+            .catch((err) => console.log(err))
     }
 }
-const getCurrTask = (token)=>{
-    return dispatch=>{
+
+const getCurrTask = (token) => {
+    return dispatch => {
         dispatch(projectReqSent())
         axios({
-            method:'GET',
-            url:"http://localhost:5000/task/add",
+            method: 'GET',
+            url: "http://localhost:5000/task/add",
             headers: { 'Authorization': `Bearer ${token}` },
         })
-        .then((res)=>dispatch(currentTask(res.data)))
-        .catch((err)=>console.log(err))
+            .then((res) => dispatch(currentTask(res.data)))
+            .catch((err) => console.log(err))
     }
 }
-const endTask = (id,token)=>{
-    return dispatch=>{
+
+const endTask = (id,time,token) => {
+    return dispatch => {
         axios({
-            method:'PATCH',
-            url:"http://localhost:5000/task/add",
+            method: 'PATCH',
+            url: "http://localhost:5000/task/add",
             headers: { 'Authorization': `Bearer ${token}` },
-            data:{
-                'id':id
+            data: {
+                'id': id,
+                'time':time
             }
         })
-        .then((res)=>alert("successfully ended"))
-        .catch((err)=>console.log(err))
+            .then((res) => alert("successfully ended"))
+            .catch((err) => console.log(err))
     }
 }
-const getAllTasks = (token)=>{
-    return dispatch=>{
+
+const getAllTasks = (token) => {
+    return dispatch => {
         dispatch(projectReqSent())
         axios({
-            method:'GET',
-            url:"http://localhost:5000/task/alllist",
+            method: 'GET',
+            url: "http://localhost:5000/task/alllist",
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        .then((res)=>dispatch(allTasks(res.data)))
-        .catch((err)=>console.log(err))
+            .then((res) => dispatch(allTasks(res.data)))
+            .catch((err) => console.log(err))
     }
 
 }
 
-export {loginUser,singupUser,logout,getProjects,addTask,getCurrTask,endTask,getAllTasks}
+export { loginUser, singupUser, logout, getProjects, addTask, getCurrTask, endTask, getAllTasks,projectFilter }
