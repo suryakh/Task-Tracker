@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import  AddTask from './AddTask'
 import {Link, Redirect} from 'react-router-dom'
-import './component.css'
+import './component.scss'
 
 export class Home extends Component {
     render() {
@@ -17,10 +17,10 @@ export class Home extends Component {
                 </div>
                     <div className="mainDiv">
                     <div>
-                    <Link to ='/currtask'><button style={{backgroundColor:"blue"}}>Show current task</button></Link>
+                    <Link to ='/currTask'><button style={{backgroundColor:"blue"}}>Show current task</button></Link>
                     </div>
                     <div>
-                    <Link to ='/alltask'><button style={{backgroundColor:"blue"}}>Show All task</button></Link>
+                    <Link to ='/allTasks'><button style={{backgroundColor:"blue"}}>Show All tasks</button></Link>
                     </div>
                     </div>
             </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginUser } from '../Redux/Actions'
 import { Redirect, Link } from 'react-router-dom'
-import './Form.css'
+import './Form.scss'
 
 
 export class Login extends Component {
@@ -26,8 +26,8 @@ export class Login extends Component {
         this.props.loginUser(temp)
     }
     render() {
-        console.log(this.props.value)
-        if (!this.props.value.loginStatus) {
+        console.log(this.props.userLoginInfo)
+        if (!this.props.userLoginInfo.loginStatus) {
             return (
                 <div className="container">
                         <div  className="inputFormHolder">
@@ -62,8 +62,7 @@ export class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
-        value: state.userReducers
+        userLoginInfo: state.userReducers
     }
 }
 const mapDispatchToProps = dispatch => {

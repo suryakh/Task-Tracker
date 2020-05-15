@@ -8,7 +8,8 @@ import { logout } from '../Redux/Actions'
 import Logout from '../Common/Logout'
 import CurrentTask from '../Components/CurrentTask'
 import Task from '../Components/Task'
-import AllTask from '../Components/AllTask'
+import AllTasks from '../Components/AllTasks'
+import { Nomodule } from '../Components/Nomodule'
 
 export class Routers extends Component {
     handleClick = () => {
@@ -45,10 +46,10 @@ export class Routers extends Component {
                         <Route path='/login' exact render={(props) => <Login  {...props} />} />
                         <Route path='/signup' exact render={(props) => <Signup {...props} />} />
                         <Route path='/logout' exact render={(props) => <Logout {...props} />} />
-                        <Route path='/currtask' exact render={(props) => <CurrentTask {...props} />} />
-                        <Route path='/alltask' exact render={(props) => <AllTask {...props} />} />
+                        <Route path='/currTask' exact render={(props) => <CurrentTask {...props} />} />
+                        <Route path='/allTasks' exact render={(props) => <AllTasks {...props} />} />
                         <Route path='/task/:id' exact render={(props) => <Task {...props} />} />
-
+                        <Route exact component={Nomodule} />
                     </Switch>
                 </div>
             </>

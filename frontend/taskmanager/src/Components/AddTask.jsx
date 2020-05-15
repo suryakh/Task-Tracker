@@ -8,6 +8,8 @@ export class AddTask extends Component {
         this.state = {
             taskName: "",
             projectName: "",
+            endDate: "",
+            endTime: ""
         }
     }
     handleChange = (e) => {
@@ -16,22 +18,34 @@ export class AddTask extends Component {
         })
     }
     handleClick = () => {
-        if(this.state.taskName !== " "){
-        let temp = {
-            taskName: this.state.taskName,
-            projectName: this.state.projectName
+        //  caluculating Time to finish the task
+        if (this.state.taskName !== "") {
+            let endTime = this.state.endDate + "T" + this.state.endTime
+            let currdate = new Date()
+            let res = Math.floor(Math.abs(currdate - new Date(endTime)) / 1000)
+            var days = Math.floor(res / 86400);
+            var hours = Math.floor(res / 3600) % 24;
+            var minutes = Math.floor(res / 60) % 60;
+            var seconds = res % 60;
+            let timeToFinish = hours + ":" + minutes + ":" + seconds
+
+            let temp = {
+                taskName: this.state.taskName,
+                projectName: this.state.projectName,
+                endTime: endTime,
+                timeToFinish: timeToFinish
+            }
+            this.props.addTask(temp, this.props.userLoginInfo.token)
         }
-        this.props.addTask(temp, this.props.value.token)
-    }
-    else {
-        alert('please enter Task details')
-    }
+        else {
+            alert('please enter Task details')
+        }
     }
     componentDidMount() {
-        this.props.getProjects(this.props.value.token)
+        this.props.getProjects(this.props.userLoginInfo.token)
     }
     render() {
-        console.log(this.props.projectList)
+        // console.log(this.props.projectList)
         console.log(this.state)
         return (
             <div className="container formHolder">
@@ -43,15 +57,22 @@ export class AddTask extends Component {
                 </div>
                 <div>
                     <div>
+                        <label>Please select end Time and Date</label>
+                    </div>
+                    <input type='date' name='endDate' value={this.state.endDate} onChange={this.handleChange} />
+                    <input type="time" name="endTime" value={this.state.endTime} onChange={this.handleChange} />
+                </div>
+                <div>
+                    <div>
                         <label>Project Name</label>
                     </div>
                     <select name='projectName' className="dropDown" value={this.state.projectName} onChange={this.handleChange}>
-                        <option></option>
+                        <option>--select--</option>
                         {this.props.projects.reqSent && this.props.projects.projectList.map((ele) => <option key={ele.id} value={ele.name}>{ele.name}</option>)}
                     </select>
                 </div>
                 <div>
-                    <button style={{ backgroundColor: "green" }} onClick={() => this.handleClick()}>Start</button>
+                    <button style={{ backgroundColor: "green" }} onClick={() => this.handleClick()}>Start Task</button>
                 </div>
 
             </div>
@@ -61,7 +82,7 @@ export class AddTask extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        value: state.userReducers,
+        userLoginInfo: state.userReducers,
         projects: state.taskReducers
     }
 }

@@ -5,12 +5,12 @@ import { Link, Redirect } from 'react-router-dom'
 
 export class CurrentTask extends Component {
     componentDidMount() {
-        this.props.getCurrTask(this.props.value.token)
+        this.props.getCurrTask(this.props.userLoginInfo.token)
     }
     handlechange = () => "hello"
     render() {
         console.log(this.props.task)
-        if (this.props.value.loginStatus) {
+        if (this.props.userLoginInfo.loginStatus) {
             return (
                 <div className="container">
                     <div className="dataHolder">
@@ -31,7 +31,7 @@ export class CurrentTask extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        value: state.userReducers,
+        userLoginInfo: state.userReducers,
         task: state.taskReducers
     }
 }

@@ -31,14 +31,17 @@ def taskData():
     elif request.method == "POST":
         taskName = request.json['taskName']
         projectName = request.json['projectName']
+        endTime = request.json['endTime'],
+        timeToFinish = request.json['timeToFinish']
         token = request.headers.get('Authorization')
         encoded_data = token.split(' ')[1]
         try:
             decode_data = jwt.decode(encoded_data,'users',algorithms=['HS256'])
             cursor = mysql.connection.cursor()
             cursor.execute(
-            """INSERT INTO taskList (taskName,projectName,userid,currStatus,startTime) values(%s,%s,%s,0,now())""",(taskName,projectName,decode_data['id'])
+            """INSERT INTO taskList (taskName,projectName,userId,currStatus,startTime,endTime,timeAllocated) values(%s,%s,%s,0,now(),%s,%s)""",(taskName,projectName,decode_data['id'],endTime,timeToFinish)
             )
+            print("hi")
             mysql.connection.commit()
             print(taskName,projectName)
             return json.dumps({"message":'successfully submited'})
@@ -54,7 +57,7 @@ def taskData():
             cursor = mysql.connection.cursor()
             print(id)
             cursor.execute(
-            """UPDATE taskList SET currStatus = 1 ,endTime= now(),overalTime= %s where id = %s""",(timeValue,id)
+            """UPDATE taskList SET currStatus = 1 ,overalTime= %s where id = %s""",(timeValue,id)
             )
             mysql.connection.commit()
             # print(taskName,projectName)

@@ -36,7 +36,7 @@ const allTasks = (data) => {
         payload: data
     }
 }
-const projectFilter = (data) =>{
+const allTasksFilter = (data) =>{
     return {
         type:PROJ_FILLTER,
         payload:data
@@ -148,4 +148,4 @@ const getAllTasks = (token) => {
 
 }
 
-export { loginUser, singupUser, logout, getProjects, addTask, getCurrTask, endTask, getAllTasks,projectFilter }
+export { loginUser, singupUser, logout, getProjects, addTask, getCurrTask, endTask, getAllTasks,allTasksFilter }

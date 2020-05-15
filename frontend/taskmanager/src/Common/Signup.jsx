@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { singupUser } from '../Redux/Actions'
+import './Form.scss'
 
 export class Signup extends Component {
     constructor(props) {
@@ -45,25 +46,25 @@ export class Signup extends Component {
                         <label>Username</label>
                     </div>
                     <div>
-                        <input className="col-12 form-control" name="username" placeholder="enter username" value={this.state.username} type="text" onChange={this.handleChange} />
+                        <input className="col-12 form-control" name="username" placeholder="Enter Username" value={this.state.username} type="text" onChange={this.handleChange} />
                     </div>
                     <div>
                         <label>Email</label>
                     </div>
                     <div>
-                        <input className="col-12 form-control" name="email" placeholder="enter email" value={this.state.email} type="text" onChange={this.handleChange} />
+                        <input className="col-12 form-control" name="email" placeholder="Enter Email" value={this.state.email} type="text" onChange={this.handleChange} />
                     </div>
                     <div>
                         <label>Password</label>
                     </div>
                     <div>
-                        <input className="col-12 form-control" type="text" name="password" placeholder="enter password" value={this.state.password} onChange={this.handleChange} />
+                        <input className="col-12 form-control" type="text" name="password" placeholder="Enter Password" value={this.state.password} onChange={this.handleChange} />
                     </div>
                     <div>
                         <label>Mobile</label>
                     </div>
                     <div>
-                        <input type="text" name="mobile" placeholder="enter mobile no." value={this.state.mobile} onChange={this.handleChange} />
+                        <input type="text" name="mobile" placeholder="Enter Mobile no." value={this.state.mobile} onChange={this.handleChange} />
                     </div>
                     <div className="btn">
                         <button style={{ backgroundColor: "green" }} onClick={this.handleClick}>Signup</button>
@@ -75,7 +76,7 @@ export class Signup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    value: state.loginreducer
+    userLoginInfo: state.loginreducer
 })
 
 const mapDispatchToProps = dispatch => {

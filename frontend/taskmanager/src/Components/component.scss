@@ -1,0 +1,113 @@
+@import "../Common/Form.scss";
+
+.mainDiv {
+	display: flex;
+	flex-direction: row;
+	margin-left: 30%;
+	text-align: center;
+	button {
+		padding: 20px;
+		margin: 20px;
+	}
+}
+.addTaskDiv {
+	margin-left: 30%;
+	height: 500px;
+	border: 2px solid black;
+	position: relative;
+	width: 50%;
+	text-align: center;
+	>div {
+		// border: 2px solid black;
+		height: auto;
+		width: auto;
+		padding: 40px;
+		position: absolute;
+		left: 50%;
+		margin: 30px 0 0 -170px;
+	}
+}
+.formHolder {
+	>div {
+		margin: 20px;
+	}
+}
+.container {
+	position: relative;
+}
+.dataHolder {
+	@include innerDiv();
+	left: 50%;
+	text-align: center;
+	margin: 30px 0 0 -170px;
+	>div {
+		padding: 30px;
+		border: 1px solid black;
+		margin: 5px;
+	}
+}
+th {
+	border-bottom: 1px solid black;
+	padding: 10px;
+}
+td {
+	border-bottom: 1px solid black;
+	padding: 10px;
+}
+.tableDiv {
+	@include innerDiv();
+	left: 30%;
+	margin: 30px 0 0 -170px;
+}
+button {
+	border: none;
+	border-radius: 10px;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+input {
+	border: 2px solid blue;
+	padding: 10px;
+	border-radius: 4px;
+}
+.dropDown {
+	background-color: blueviolet;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+}
+.items {
+	width: 200px;
+	border: 1px solid black;
+	margin: 20px;
+	border-radius: 12px;
+}
+.inputDiv {
+	text-align: center;
+}
+.taskInfo {
+	display: flex;
+	flex-direction: column;
+	color: blue;
+	h3 {
+		color: black;
+	}
+}
+h1 {
+	>span {
+		font-size: 15px;
+		color: gray;
+	}
+}

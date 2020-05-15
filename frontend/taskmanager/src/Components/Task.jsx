@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { endTask } from '../Redux/Actions'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 export class Task extends Component {
     constructor(props) {
         super(props)
@@ -28,6 +28,7 @@ export class Task extends Component {
 
         //  calculating time spend on particular task
         let startdate = new Date(dateFromdb)
+        console.log(startdate)
         let currdate = new Date()
         let res = Math.floor(Math.abs(currdate - startdate) / 1000)
 
@@ -53,12 +54,13 @@ export class Task extends Component {
     handleClick() {
         clearInterval(this.Timerinterval)
         let time = this.state.Hours +":"+this.state.Minutes+":"+this.state.Seconds
-        this.props.endTask(this.props.match.params.id,time,this.props.value.token)
+        this.props.endTask(this.props.match.params.id,time,this.props.userLoginInfo.token)
         this.setState({
             taskEnd:true
         })
     }
     render() {
+        if(this.props.userLoginInfo.loginStatus){
         return (
             <div className="container">
 
@@ -80,18 +82,24 @@ export class Task extends Component {
                     </div>
 
 
-                    <h1> {this.state.Hours}<span>hh </span>: {this.state.Minutes}<span>mm </span> : {this.state.Seconds}<span>sec</span></h1>
-                        {!this.state.taskEnd && <button style={{backgroundColor:"red"}} onClick={() => this.handleClick()}>Stop task</button>}
-                        {this.state.taskEnd && <Link to="/alltask"><button style={{backgroundColor:"blue"}}>Show All Tasks</button></Link>}
+                    <h1> {this.state.Hours}<span> hh </span>: {this.state.Minutes}<span> mm </span> : {this.state.Seconds}<span> sec</span></h1>
+                        {!this.state.taskEnd && <button style={{backgroundColor:"red"}} onClick={() => this.handleClick()}>Finish task</button>}
+                        {this.state.taskEnd && <Link to="/alltasks"><button style={{backgroundColor:"blue"}}>Show All Tasks</button></Link>}
                 </div>
             </div>
         )
+        }
+        else {
+            return (
+                <Redirect to="/login"/>
+            )
+        }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        value: state.userReducers,
+        userLoginInfo: state.userReducers,
         task: state.taskReducers
     }
 }
