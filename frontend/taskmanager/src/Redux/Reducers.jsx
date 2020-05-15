@@ -1,4 +1,4 @@
-import {LOGIN ,LOGOUT,PROJECTLIST,PROJ_REQ}  from './Action_types'
+import {LOGIN ,LOGOUT,PROJECTLIST,PROJ_REQ,CURR_TASK,ALL_TASKS}  from './Action_types'
 
 let initialState = {
     loginStatus:false,
@@ -8,7 +8,9 @@ let initialState = {
 
 let taskDataState= {
     projectList:[],
-    projectReq:false
+    reqSent:false,
+    currTaskList:[],
+    allTasks:[]
 }
 
 const userReducers = (state = initialState,action)=>{
@@ -41,13 +43,27 @@ const taskReducers = (state=taskDataState,action)=>{
             return{
                 ...state,
                 projectList:action.payload,
-                projectReq:true
+                reqSent:true
             }
         }
         case PROJ_REQ:{
             return {
                 ...state,
-                projectReq:false
+                reqSent:false
+            }
+        }
+        case CURR_TASK:{
+            return {
+                ...state,
+                currTaskList:action.payload,
+                reqSent:true
+            }
+        }
+        case ALL_TASKS:{
+            return{
+                ...state,
+                allTasks:action.payload,
+                reqSent:true
             }
         }
         default :{

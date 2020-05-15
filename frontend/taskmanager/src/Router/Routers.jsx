@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Switch, Route, Link} from 'react-router-dom'
-import Login  from '../Common/Login'
-import Signup  from '../Common/Signup'
+import { Switch, Route, Link } from 'react-router-dom'
+import Login from '../Common/Login'
+import Signup from '../Common/Signup'
 import Home from '../Components/Home'
 import { logout } from '../Redux/Actions'
 import Logout from '../Common/Logout'
+import CurrentTask from '../Components/CurrentTask'
+import Task from '../Components/Task'
+import AllTask from '../Components/AllTask'
 
 export class Routers extends Component {
     handleClick = () => {
@@ -15,31 +18,38 @@ export class Routers extends Component {
         console.log(this.props.value)
         return (
             <>
-            <div className="Nav">
-            <div className="navBar">
-                <ul>
-                    <li>
-                <Link to ='/'> Home</Link>
-                </li>
-                <li>
-                <Link to ='/login'> Login</Link>
-                </li>
-                <li>
-                <Link to ='/signup'>signup</Link>
-                </li>
-                <li>
-                    <Link to="logout"> <button onClick={()=>this.handleClick()}>Logout</button></Link>
-                </li>
-                </ul>
-            </div>
-            </div>
-            <div>
-                <Switch>
-                <Route path='/' exact render={(props)=><Home {...props}/>}/>
-                <Route path='/login' exact render={(props)=><Login  {...props}/>}/>
-                <Route path='/signup' exact render={(props)=><Signup {...props}/>}/>
-                <Route path='/logout' exact render={(props)=><Logout {...props}/>}/>
-                </Switch>
+                <div className="Nav">
+                    <div className="navBar">
+                        <ul>
+                            <li>
+                                <Link to='/'> Home</Link>
+                            </li>
+                            <li>
+                            {!this.props.value.loginStatus && <Link to='/login'> Login</Link>}
+                            </li>
+                            <li>
+                            {!this.props.value.loginStatus &&   <Link to='/signup'>signup</Link>}
+                            </li>
+                            <li>
+                                {this.props.value.loginStatus && <h3>{this.props.value.user}</h3>}
+                            </li>
+                            <li>
+                                {this.props.value.loginStatus && <Link to="logout"> <button onClick={() => this.handleClick()}>Logout</button></Link>}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <Switch>
+                        <Route path='/' exact render={(props) => <Home {...props} />} />
+                        <Route path='/login' exact render={(props) => <Login  {...props} />} />
+                        <Route path='/signup' exact render={(props) => <Signup {...props} />} />
+                        <Route path='/logout' exact render={(props) => <Logout {...props} />} />
+                        <Route path='/currtask' exact render={(props) => <CurrentTask {...props} />} />
+                        <Route path='/alltask' exact render={(props) => <AllTask {...props} />} />
+                        <Route path='/task/:id' exact render={(props) => <Task {...props} />} />
+
+                    </Switch>
                 </div>
             </>
         )
@@ -47,10 +57,10 @@ export class Routers extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    value :state.userReducers
+    value: state.userReducers
 })
 
-const mapDispatchToProps = dispatch =>{
+const mapDispatchToProps = dispatch => {
     return {
         logout: () => dispatch(logout())
     }

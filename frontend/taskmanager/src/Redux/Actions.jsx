@@ -1,4 +1,4 @@
-import  { LOGIN,LOGOUT,PROJECTLIST,PROJ_REQ } from './Action_types'
+import  { LOGIN,LOGOUT,PROJECTLIST,PROJ_REQ,CURR_TASK,ALL_TASKS } from './Action_types'
 import axios from 'axios'
 
 const login = (data) => {
@@ -22,6 +22,18 @@ const projectList =(data)=>{
 const projectReqSent=()=>{
     return{
         type:PROJ_REQ
+    }
+}
+const currentTask=(data)=>{
+    return{
+        type:CURR_TASK,
+        payload:data
+    }
+}
+const allTasks = (data)=>{
+    return {
+        type:ALL_TASKS,
+        payload:data
     }
 }
 
@@ -58,6 +70,7 @@ const singupUser = (data) => {
             })
     }
 }
+
 const getProjects = (token)=>{
     return dispatch=>{
         dispatch(projectReqSent())
@@ -84,6 +97,44 @@ const addTask = (data,token)=>{
         .catch((err)=>console.log(err))
     }
 }
+const getCurrTask = (token)=>{
+    return dispatch=>{
+        dispatch(projectReqSent())
+        axios({
+            method:'GET',
+            url:"http://localhost:5000/task/add",
+            headers: { 'Authorization': `Bearer ${token}` },
+        })
+        .then((res)=>dispatch(currentTask(res.data)))
+        .catch((err)=>console.log(err))
+    }
+}
+const endTask = (id,token)=>{
+    return dispatch=>{
+        axios({
+            method:'PATCH',
+            url:"http://localhost:5000/task/add",
+            headers: { 'Authorization': `Bearer ${token}` },
+            data:{
+                'id':id
+            }
+        })
+        .then((res)=>alert("successfully ended"))
+        .catch((err)=>console.log(err))
+    }
+}
+const getAllTasks = (token)=>{
+    return dispatch=>{
+        dispatch(projectReqSent())
+        axios({
+            method:'GET',
+            url:"http://localhost:5000/task/alllist",
+            headers: { 'Authorization': `Bearer ${token}` }
+        })
+        .then((res)=>dispatch(allTasks(res.data)))
+        .catch((err)=>console.log(err))
+    }
 
+}
 
-export {loginUser,singupUser,logout,getProjects,addTask}
+export {loginUser,singupUser,logout,getProjects,addTask,getCurrTask,endTask,getAllTasks}

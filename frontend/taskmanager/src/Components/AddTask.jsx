@@ -32,7 +32,7 @@ export class AddTask extends Component {
             <div className="container">
                 <input type='text' name='taskName' value={this.state.taskName} onChange={this.handleChange} />
                 <select name='projectName' value={this.state.projectName} onChange={this.handleChange}>
-                    {this.props.projects.projectReq && this.props.projects.projectList.map((ele) => <option key ={ele.id} value ={ele.name}>{ele.name}</option>)}
+                    {this.props.projects.reqSent && this.props.projects.projectList.map((ele) => <option key ={ele.id} value ={ele.name}>{ele.name}</option>)}
                 </select>
                 <button onClick={()=>this.handleClick()}>Start</button>
 
