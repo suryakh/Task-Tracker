@@ -5,10 +5,15 @@ TaskManager:
 Features:
 
 1.User can signup and Login
+
 2.User can create a Task along with data Like(Task Name,ProjectName start Date Time and end Date Time )
+
 3.On create task start time will be Stored and Timer will start tracking.
+
 4.User can see the current tasks.
+
 5.User can browse through his previous tasks along with time.
+
 
 Screen Shots:
 
