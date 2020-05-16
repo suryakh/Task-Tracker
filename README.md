@@ -1,6 +1,6 @@
 TaskManager:
 
-    ```User can track his tasks along with time entries.```
+    User can track his tasks along with time entries.
 
 Features:
 
