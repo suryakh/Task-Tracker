@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { singupUser } from '../Redux/Actions'
+import { signupUser } from '../Redux/Actions'
 import './Form.scss'
 
 export class Signup extends Component {
@@ -26,7 +26,7 @@ export class Signup extends Component {
             mobile: this.state.mobile
         }
         if (this.state.username !== "" && this.state.password !== "") {
-            this.props.singupUser(temp)
+            this.props.signupUser(temp)
         }
         else {
             alert("please fill all details")
@@ -81,7 +81,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        singupUser: (data) => dispatch(singupUser(data))
+        signupUser: (data) => dispatch(signupUser(data))
 
     }
 }

@@ -18,6 +18,7 @@ export class AddTask extends Component {
         })
     }
     handleClick = () => {
+        //  onclick start time automatically updated to database.
         //  caluculating Time to finish the task
         if (this.state.taskName !== "") {
             let endTime = this.state.endDate + "T" + this.state.endTime

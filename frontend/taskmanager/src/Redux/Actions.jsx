@@ -62,7 +62,7 @@ const loginUser = (data) => {
     };
 }
 
-const singupUser = (data) => {
+const signupUser = (data) => {
     return dispatch => {
         axios({
             method: "POST",
@@ -148,4 +148,4 @@ const getAllTasks = (token) => {
 
 }
 
-export { loginUser, singupUser, logout, getProjects, addTask, getCurrTask, endTask, getAllTasks,allTasksFilter }
+export { loginUser, signupUser, logout, getProjects, addTask, getCurrTask, endTask, getAllTasks,allTasksFilter }

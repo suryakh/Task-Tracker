@@ -26,7 +26,7 @@ export class Task extends Component {
         })
         let dateFromdb = temp.startTime.replace("GMT", "")
 
-        //  calculating time spend on particular task
+        //  calculating time spent on particular task
         let startdate = new Date(dateFromdb)
         console.log(startdate)
         let currdate = new Date()
