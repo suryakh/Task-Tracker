@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, PROJECTLIST, PROJ_REQ, CURR_TASK, ALL_TASKS,PROJ_FILLTER } from './Action_types'
+import { LOGIN, LOGOUT, PROJECTLIST, PROJ_REQ, CURR_TASK, ALL_TASKS, PROJ_FILLTER } from './Action_types'
 
 let initialState = {
     loginStatus: false,
@@ -11,7 +11,7 @@ let taskDataState = {
     reqSent: false,
     currTaskList: [],
     allTasks: [],
-    displayTasks:[]
+    displayTasks: []
 }
 
 const userReducers = (state = initialState, action) => {
@@ -64,30 +64,30 @@ const taskReducers = (state = taskDataState, action) => {
             return {
                 ...state,
                 allTasks: action.payload,
-                displayTasks:action.payload,
+                displayTasks: action.payload,
                 reqSent: true
             }
         }
-        case PROJ_FILLTER:{
-            let temp  = []
+        case PROJ_FILLTER: {
+            let temp = []
             console.log(action.payload)
-            if(action.payload == "All"){
-                return{
+            if (action.payload == "All") {
+                return {
                     ...state,
-                    displayTasks:state.allTasks
+                    displayTasks: state.allTasks
                 }
             }
             else {
-            temp = state.allTasks.filter((ele)=>{
-                if (ele.projectName == action.payload){
-                    return ele
+                temp = state.allTasks.filter((ele) => {
+                    if (ele.projectName == action.payload) {
+                        return ele
+                    }
+                })
+                return {
+                    ...state,
+                    displayTasks: temp
                 }
-            })
-            return {
-                ...state,
-                displayTasks:temp
             }
-        }
         }
         default: {
             return state

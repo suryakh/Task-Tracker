@@ -35,7 +35,7 @@ export class Routers extends Component {
                                 {this.props.value.loginStatus && <h3>{this.props.value.user}</h3>}
                             </li>
                             <li>
-                                {this.props.value.loginStatus && <Link to="logout"> <button style={{backgroundColor:"red"}} onClick={() => this.handleClick()}>Logout</button></Link>}
+                                {this.props.value.loginStatus && <Link to="logout"> <button style={{ backgroundColor: "red" }} onClick={() => this.handleClick()}>Logout</button></Link>}
                             </li>
                         </ul>
                     </div>

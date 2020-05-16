@@ -11,7 +11,7 @@ export class Task extends Component {
             Hours: "",
             Minutes: "",
             Seconds: "",
-            taskEnd:false
+            taskEnd: false
         }
     }
     componentDidMount() {
@@ -53,45 +53,45 @@ export class Task extends Component {
     }
     handleClick() {
         clearInterval(this.Timerinterval)
-        let time = this.state.Hours +":"+this.state.Minutes+":"+this.state.Seconds
-        this.props.endTask(this.props.match.params.id,time,this.props.userLoginInfo.token)
+        let time = this.state.Hours + ":" + this.state.Minutes + ":" + this.state.Seconds
+        this.props.endTask(this.props.match.params.id, time, this.props.userLoginInfo.token)
         this.setState({
-            taskEnd:true
+            taskEnd: true
         })
     }
     render() {
-        if(this.props.userLoginInfo.loginStatus){
-        return (
-            <div className="container">
+        if (this.props.userLoginInfo.loginStatus) {
+            return (
+                <div className="container">
 
-                <div className="dataHolder">
-                    <h2>Task Details</h2>
-                    <div className="taskInfo">
-                        <div>
-                            <label>Task Name: <h3>{this.state.Task.taskName}</h3></label>
+                    <div className="dataHolder">
+                        <h2>Task Details</h2>
+                        <div className="taskInfo">
+                            <div>
+                                <label>Task Name: <h3>{this.state.Task.taskName}</h3></label>
+                            </div>
+                            <div>
+                                <label>Project Name: <h3>{this.state.Task.projectName}</h3></label>
+
+                            </div>
+                            <div>
+                                <label>Start At: <h3>{this.state.Task.startTime}</h3></label>
+
+                            </div>
+
                         </div>
-                        <div>
-                            <label>Project Name: <h3>{this.state.Task.projectName}</h3></label>
 
-                        </div>
-                        <div>
-                            <label>Start At: <h3>{this.state.Task.startTime}</h3></label>
 
-                        </div>
-
+                        <h1> {this.state.Hours}<span> hh </span>: {this.state.Minutes}<span> mm </span> : {this.state.Seconds}<span> sec</span></h1>
+                        {!this.state.taskEnd && <button style={{ backgroundColor: "red" }} onClick={() => this.handleClick()}>Finish task</button>}
+                        {this.state.taskEnd && <Link to="/alltasks"><button style={{ backgroundColor: "blue" }}>Show All Tasks</button></Link>}
                     </div>
-
-
-                    <h1> {this.state.Hours}<span> hh </span>: {this.state.Minutes}<span> mm </span> : {this.state.Seconds}<span> sec</span></h1>
-                        {!this.state.taskEnd && <button style={{backgroundColor:"red"}} onClick={() => this.handleClick()}>Finish task</button>}
-                        {this.state.taskEnd && <Link to="/alltasks"><button style={{backgroundColor:"blue"}}>Show All Tasks</button></Link>}
                 </div>
-            </div>
-        )
+            )
         }
         else {
             return (
-                <Redirect to="/login"/>
+                <Redirect to="/login" />
             )
         }
     }
@@ -106,7 +106,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        endTask: (id,time,token) => dispatch(endTask(id,time,token))
+        endTask: (id, time, token) => dispatch(endTask(id, time, token))
     }
 }
 

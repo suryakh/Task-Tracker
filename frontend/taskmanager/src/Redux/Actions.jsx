@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, PROJECTLIST, PROJ_REQ, CURR_TASK, ALL_TASKS,PROJ_FILLTER } from './Action_types'
+import { LOGIN, LOGOUT, PROJECTLIST, PROJ_REQ, CURR_TASK, ALL_TASKS, PROJ_FILLTER } from './Action_types'
 import axios from 'axios'
 
 const login = (data) => {
@@ -36,10 +36,10 @@ const allTasks = (data) => {
         payload: data
     }
 }
-const allTasksFilter = (data) =>{
+const allTasksFilter = (data) => {
     return {
-        type:PROJ_FILLTER,
-        payload:data
+        type: PROJ_FILLTER,
+        payload: data
     }
 }
 
@@ -118,7 +118,7 @@ const getCurrTask = (token) => {
     }
 }
 
-const endTask = (id,time,token) => {
+const endTask = (id, time, token) => {
     return dispatch => {
         axios({
             method: 'PATCH',
@@ -126,7 +126,7 @@ const endTask = (id,time,token) => {
             headers: { 'Authorization': `Bearer ${token}` },
             data: {
                 'id': id,
-                'time':time
+                'time': time
             }
         })
             .then((res) => alert("successfully ended"))
@@ -148,4 +148,4 @@ const getAllTasks = (token) => {
 
 }
 
-export { loginUser, signupUser, logout, getProjects, addTask, getCurrTask, endTask, getAllTasks,allTasksFilter }
+export { loginUser, signupUser, logout, getProjects, addTask, getCurrTask, endTask, getAllTasks, allTasksFilter }
