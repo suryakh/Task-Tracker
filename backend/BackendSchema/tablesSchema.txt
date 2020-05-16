@@ -12,10 +12,14 @@ Project table:
 +----+----------+
 | id | name     |
 +----+----------+
-|  1 | frontend |
-|  2 | backend  |
-|  3 | verizon  |
+|  1 | project1 |
+|  2 | project2 |
+|  3 | project3 |
+|  4 | project4 |
+|  5 | project5 |
+|  6 | project6 |
 +----+----------+
+
 
 TaskList table:
 

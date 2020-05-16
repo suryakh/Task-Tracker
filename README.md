@@ -12,7 +12,8 @@ Features:
 
 4.User can see the current tasks.
 
-5.User can browse through his previous tasks along with time.
+5.User can browse through his previous tasks along with time and can filter based on project name.
+
 
 
 Screen Shots:
