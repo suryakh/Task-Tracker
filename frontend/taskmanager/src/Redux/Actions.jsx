@@ -47,7 +47,7 @@ const loginUser = (data) => {
     return dispatch => {
         axios({
             method: 'POST',
-            url: 'http://localhost:5000/auth/login',
+            url: 'https://tasktrackerflask.herokuapp.com/auth/login',
             data: data
         })
             .then(res => {
@@ -66,7 +66,7 @@ const signupUser = (data) => {
     return dispatch => {
         axios({
             method: "POST",
-            url: "http://localhost:5000/auth/signup",
+            url: "https://tasktrackerflask.herokuapp.com/auth/signup",
             data: data,
         })
             .then((res) => {
@@ -83,7 +83,7 @@ const getProjects = (token) => {
         dispatch(projectReqSent())
         axios({
             method: 'GET',
-            url: "http://localhost:5000/projects/list",
+            url: "https://tasktrackerflask.herokuapp.com/projects/list",
             headers: { 'Authorization': `Bearer ${token}` }
         })
             .then((res) => dispatch(projectList(res.data)))
@@ -96,7 +96,7 @@ const addTask = (data, token) => {
     return dispatch => {
         axios({
             method: 'POST',
-            url: "http://localhost:5000/task/add",
+            url: "https://tasktrackerflask.herokuapp.com/task/add",
             headers: { 'Authorization': `Bearer ${token}` },
             data: data
         })
@@ -110,7 +110,7 @@ const getCurrTask = (token) => {
         dispatch(projectReqSent())
         axios({
             method: 'GET',
-            url: "http://localhost:5000/task/add",
+            url: "https://tasktrackerflask.herokuapp.com/task/add",
             headers: { 'Authorization': `Bearer ${token}` },
         })
             .then((res) => dispatch(currentTask(res.data)))
@@ -122,7 +122,7 @@ const endTask = (id, time, token) => {
     return dispatch => {
         axios({
             method: 'PATCH',
-            url: "http://localhost:5000/task/add",
+            url: "https://tasktrackerflask.herokuapp.com/task/add",
             headers: { 'Authorization': `Bearer ${token}` },
             data: {
                 'id': id,
@@ -139,7 +139,7 @@ const getAllTasks = (token) => {
         dispatch(projectReqSent())
         axios({
             method: 'GET',
-            url: "http://localhost:5000/task/alllist",
+            url: "https://tasktrackerflask.herokuapp.com/task/alllist",
             headers: { 'Authorization': `Bearer ${token}` }
         })
             .then((res) => dispatch(allTasks(res.data)))
